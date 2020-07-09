@@ -2,10 +2,14 @@ NRSC5-GUI is a graphical interface for [nrsc5](https://github.com/theori-io/nrsc
 It makes it easy to play your favorite FM HD radio stations using an RTL-SDR dongle.  
 It will also display weather radar and traffic maps if the radio station provides them.
 
+# Fork Details
+- Added script to produce 2 hour radar loop mp4 of weather maps, ffmpeg required.
+
 # Dependencies
 
 The folowing programs are required to run NRSC5-GUI
 
+* [ffmpeg](https://ffmpeg.org/)
 * [Python 3](https://www.python.org/downloads/release)
 * [PyGObject](https://pygobject.readthedocs.io/en/latest/)
 * [Pillow](https://pillow.readthedocs.io/en/stable/)
