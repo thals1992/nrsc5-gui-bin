@@ -20,7 +20,7 @@ do
 	ffmpeg -loglevel panic -y -f concat -i radar_loop.txt -c copy radar_loop_$DATE.mp4
 
 	rm radar_2h.mp4
-	cp radar_loop_$DATE.mp4 /media/lee/AcerNAS1/Share/Radio/downloads/Maps/
+	cp radar_loop_$DATE.mp4 ~/
 
 	printf "[ACTION] Sleeping for 2 hours ...\n\n\n"
 	sleep 2h
