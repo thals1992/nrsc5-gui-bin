@@ -21,7 +21,8 @@ do
 
 	rm radar_2h.mp4
 	cp radar_loop_$DATE.mp4 ~/
-
+	rm radar_loop_$DATE
+	
 	printf "[ACTION] Sleeping for 2 hours ...\n\n\n"
 	sleep 2h
 done
