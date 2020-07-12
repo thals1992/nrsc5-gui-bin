@@ -1,10 +1,10 @@
 #!/bin/bash
-DATE=$(date +"%Y%m%d%H%M")
-HOUR=$(date +"%H")
 printf "Radar Collector [ hit CTRL+C to stop ]\n\n\n"
 
 for (( ; ; ))
 do
+DATE=$(date +"%Y%m%d%H%M")
+HOUR=$(date +"%H")
 	printf "[ACTION] Collection Started: ${HOUR}z\n"
 	mkdir -p ./map/latest
 	cd ./map
