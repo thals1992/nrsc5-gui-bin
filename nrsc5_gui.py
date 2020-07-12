@@ -578,8 +578,8 @@ class NRSC5GUI(object):
                 map_id = match.group(1)
                 timestamp = int(match.group(2))
 
-                # remove weather maps older than 12 hours
-                if now - timestamp > 60*60*12:
+                # remove weather maps older than 24 hours
+                if now - timestamp > 60*60*24:
                     try:
                         if file in self.weather_maps:
                             self.weather_maps.pop(self.weather_maps.index(file))
