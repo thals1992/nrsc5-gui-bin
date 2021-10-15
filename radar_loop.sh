@@ -12,17 +12,16 @@ HOUR=$(date +"%H")
 
 	find *.png -mmin -120 -exec cp -a -t ./latest "{}" \+
 	rm ./latest/traffic*
-	cat ./latest/*.png | ffmpeg -loglevel panic -f image2pipe -r 1 -i - -vcodec libx264 ../radar_2h.mp4
-	rm -rf ./latest
-	cd ../
+	rm ./latest/base*
 
-	printf "[ACTION] Outputting Radar Video\n"
-	ffmpeg -loglevel panic -y -f concat -i radar_loop.txt -c copy radar_loop_$DATE.mp4
+	cd ./latest
+	#cat *.png | ffmpeg -loglevel panic -f image2pipe -r 1 -i - -vcodec libx264 radar_2h.mp4
+	cat $(find . -maxdepth 1 -name "*.png" | sort -V) | ffmpeg -framerate 15 -i - radar_2h.avi
+	rm -rf ./*.png
+	cp radar_2h.avi ~/radar_$DATE.avi
+	rm radar_2h.avi
+	cd ../../
 
-	rm radar_2h.mp4
-	cp radar_loop_$DATE.mp4 ~/
-	rm radar_loop_$DATE
-	
 	printf "[ACTION] Sleeping for 2 hours ...\n\n\n"
 	sleep 2h
 done
