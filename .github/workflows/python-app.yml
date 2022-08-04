@@ -23,11 +23,27 @@ jobs:
       uses: actions/setup-python@v3
       with:
         python-version: "3.10"
-    - name: Install dependencies
+    - name: Install Python Dependencies
       run: |
         python -m pip install --upgrade pip
-        pip install flake8 pytest
+        pip install flake8 pytest PyGObject Pillow PyAudio
         if [ -f requirements.txt ]; then pip install -r requirements.txt; fi
+    - name: Install dependencies
+      run: sudo apt-get update -qq && sudo apt-get install -y libao-dev libfftw3-dev librtlsdr-dev python3-pyaudio && git clone https://github.com/theori-io/nrsc5.git
+    - name: Configure
+      run: |
+        cd nrsc5
+        mkdir build
+        cd build
+        cmake ..
+    - name: Compile
+      working-directory: build
+      run: make -j3
+    - name: Install
+      working-directory: build
+      run: |
+        sudo make install
+        sudo ldconfig
     - name: Lint with flake8
       run: |
         # stop the build if there are Python syntax errors or undefined names
