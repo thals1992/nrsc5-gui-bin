@@ -30,16 +30,18 @@ jobs:
         python -m pip install --upgrade pip
         pip install flake8 pytest
         if [ -f requirements.txt ]; then pip install -r requirements.txt; fi
-    - name: Configure
+    - name: Configure make
       run: |
         cd nrsc5/
         mkdir build
         cd build
         cmake ..
-    - name: Compile
+    - name: Compile (make)
       working-directory: build
-      run: cd nrsc5/ && make -j3
-    - name: Install
+      run: |
+        cd nrsc5/
+        make -j3
+    - name: Install (make & ldconfig)
       working-directory: build
       run: |
         sudo make install
